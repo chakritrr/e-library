@@ -40,7 +40,11 @@ export class CatRepository implements CatAbstractRepository {
       age: postcatRequestDto.age,
       breed: postcatRequestDto.breed,
     };
-    
-    return this.catModel.findByIdAndUpdate(id, updatedCat, { new: true }).exec();
+
+    return this.catModel.findByIdAndUpdate(id, updatedCat, { new: true });
+  }
+
+  createTypeCat(catSchema: Cat) {
+    return this.catModel.create(catSchema);
   }
 }
