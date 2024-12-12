@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { CatGetUseCase } from './cat-get-use-case';
 import { DataServiceModule } from 'src/freamworks/data-services/data-service.module';
-import { CatGetFactoryService } from './cat-get-factory.service';
+import { CatGetUseCaseService } from './cat-get-use-case.service';
 
 @Module({
   imports: [DataServiceModule],
-  providers: [CatGetUseCase, CatGetFactoryService],
-  exports: [CatGetUseCase, CatGetFactoryService],
+  providers: [CatGetUseCaseService],
+  exports: [CatGetUseCaseService],
 })
-export class CatGetUseCaseModule {}
+export class CatGetUseCaseServiceModule {}

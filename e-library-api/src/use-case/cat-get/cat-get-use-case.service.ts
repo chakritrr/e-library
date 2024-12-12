@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CatAbstractRepository } from 'src/core';
 
 @Injectable()
-export class CatGetUseCase {
+export class CatGetUseCaseService {
   constructor(private readonly catAbstractRepository: CatAbstractRepository) {}
 
   async getCat() {

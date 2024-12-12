@@ -1,23 +1,29 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { CatAbstractRepository } from 'src/core';
 
 import { PostcatRequestDto } from 'src/core/dtos';
-import { CatCreateUseCase } from 'src/use-case/cat-create/cat-create-use-case';
-import { CatGetUseCase } from 'src/use-case/cat-get/cat-get-use-case';
-
+import { CatCreateUseCaseService } from 'src/use-case/cat-create/cat-create-use-case.service';
+import { CatGetUseCaseService } from 'src/use-case/cat-get/cat-get-use-case.service';
 @Controller()
 export class CatController {
   constructor(
-    private readonly catGetUseCase: CatGetUseCase,
-    private readonly catCreateUseCase: CatCreateUseCase,
+    private readonly catGetUseCaseService: CatGetUseCaseService,
+    private readonly catCreateUseCaseService: CatCreateUseCaseService,
+    private readonly catAbstractRepository: CatAbstractRepository
   ) {}
 
   @Get('/v1/cat')
   getCat() {
-    return this.catGetUseCase.getCat();
+    return this.catGetUseCaseService.getCat();
   }
 
   @Post('/v1/cat')
   postCat(@Body() postcatRequestDto: PostcatRequestDto) {
-    return this.catCreateUseCase.createCat(postcatRequestDto);
+    return this.catCreateUseCaseService.createCat(postcatRequestDto);
+  }
+
+  @Delete('/v1/cat/:id')
+  deleteCat(@Param('id')id: string) {
+    return  this.catAbstractRepository.deleteCat(id)
   }
 }
