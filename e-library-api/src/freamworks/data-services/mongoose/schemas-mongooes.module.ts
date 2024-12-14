@@ -6,10 +6,11 @@ import {
   Cat,
   CatAbstractRepository,
   CatSchema,
+  IUserRepository,
   User,
   UserSchema,
 } from 'src/core';
-import { CatRepository } from 'src/repositories';
+import { CatRepository, UserRepository } from 'src/repositories';
 
 @Module({
   imports: [
@@ -24,7 +25,11 @@ import { CatRepository } from 'src/repositories';
       provide: CatAbstractRepository,
       useClass: CatRepository,
     },
+    {
+      provide: IUserRepository,
+      useClass: UserRepository,
+    },
   ],
-  exports: [CatAbstractRepository],
+  exports: [CatAbstractRepository, IUserRepository],
 })
 export class SchemasMongooseModule {}
