@@ -2,8 +2,7 @@ import mongoose, { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { Cat, CatAbstractRepository } from 'src/core';
-import { PostcatRequestDto } from 'src/core/dtos';
+import { Cat, CatAbstractRepository, PostcatRequestDto } from 'src/core';
 
 @Injectable()
 export class CatRepository implements CatAbstractRepository {
